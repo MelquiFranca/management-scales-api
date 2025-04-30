@@ -1,12 +1,14 @@
 export type DTOMember = {
+  id?: string,
   name: string,
   username: string,
   type: string,
-  password: string,
+  password?: string,
   photo?: string
 }
 
 export type DTORepositoryResult = {
   id: string,
-  removed?: boolean
+  removed?: boolean,
+  updated?: boolean
 }
