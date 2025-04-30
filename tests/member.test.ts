@@ -11,6 +11,7 @@ describe('members suite tests', () => {
   describe('create members', () => {
     describe('sucess cases', () => {
       const expectedResult = { id: '123' }
+      const birthday = new Date()
       const mockRepo: IRepository = {
         save: () => Promise.resolve({ id: expectedResult.id }),
         remove: () => Promise.resolve({ id: expectedResult.id, removed: true }),
@@ -19,7 +20,6 @@ describe('members suite tests', () => {
       }
       it('Should create a member', async () => {
         const createMemberService = new CreateMemberService(mockRepo)
-        const birthday = new Date()
         const data = {
           name: 'Sunda Foo',
           username: 'sunda',
@@ -41,6 +41,7 @@ describe('members suite tests', () => {
         const data = {
           id: '123',
           name: 'Bobra',
+          birthday,
           username: 'foo',
           type: 'user',
           password: '123'
