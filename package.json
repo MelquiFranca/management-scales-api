@@ -2,9 +2,8 @@
   "name": "management-squad-api",
   "version": "1.0.0",
   "main": "index.js",
-  "type": "module",
   "scripts": {
-    "test": "node --test",
+    "test": "node -r ts-node/register -r tsconfig-paths/register --test ./tests/*.test.ts",
     "build": "tsc",
     "start": "node dist/index.js",
     "dev": "tsc --watch"
@@ -15,6 +14,8 @@
   "description": "",
   "dependencies": {
     "@types/node": "^22.15.3",
+    "ts-node": "^10.9.2",
+    "tsconfig-paths": "^4.2.0",
     "typescript": "^5.8.3"
   }
 }
