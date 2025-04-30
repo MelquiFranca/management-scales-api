@@ -14,5 +14,5 @@ export type DTORepositoryResult = {
 }
 
 export type DTOFilter = {
-  groupId: string
+  groupId?: string
 }
