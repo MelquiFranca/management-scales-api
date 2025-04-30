@@ -17,4 +17,4 @@ jobs:
       with:
         node: 22
     - run: npm ci
-    - run: npm test
+    - run: export TERM=xterm && npm test
