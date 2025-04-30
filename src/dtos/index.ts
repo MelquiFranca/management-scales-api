@@ -12,3 +12,7 @@ export type DTORepositoryResult = {
   removed?: boolean,
   updated?: boolean
 }
+
+export type DTOFilter = {
+  groupId: string
+}
