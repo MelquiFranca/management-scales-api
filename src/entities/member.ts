@@ -6,6 +6,7 @@ export default class Member implements Entity {
     private name: string,
     private username: string,
     private birthday: Date,
+    private photo?: string,
   ) {}
   get id (): string {
     return this._id

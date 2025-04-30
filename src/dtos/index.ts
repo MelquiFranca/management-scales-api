@@ -3,6 +3,7 @@ export type DTOMember = {
   name: string,
   username: string,
   type: string,
+  birthday: Date,
   password?: string,
   photo?: string
 }
