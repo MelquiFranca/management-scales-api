@@ -9,9 +9,9 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-    - run: export TERM = xterm
-    - uses: actions/checkout@v4
     - name: Set TERM
+      run: export TERM = xterm
+    - uses: actions/checkout@v4
     - name: Use Node.js
       uses: actions/setup-node@v4
       with:
