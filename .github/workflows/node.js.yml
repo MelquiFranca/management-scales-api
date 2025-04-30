@@ -16,10 +16,10 @@ jobs:
         echo "TERM is now: $TERM"
     - name: Use Node.js
       uses: actions/setup-node@v4
-      with:
-        node: 22
-    - run: |
+      run: |
         export TERM=xterm-256color
         echo "TERM is now: $TERM"
+      with:
+        node: 22
     - run: npm ci
     - run: npm test
