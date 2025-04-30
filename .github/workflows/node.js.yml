@@ -9,9 +9,7 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-    - run: |
-        export TERM=xterm-256color
-        echo "TERM is now: $TERM"
+    - run: export TERM = xterm
     - uses: actions/checkout@v4
     - name: Set TERM
     - name: Use Node.js
