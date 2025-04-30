@@ -1,6 +1,6 @@
-type DTOResult = {
-  _id: string
-}
-export default interface Repository {
-  save (data: Object): Promise<DTOResult>
+import { DTORepositoryResult } from "@base/dtos"
+
+export default interface IRepository {
+  save (data: Object): Promise<DTORepositoryResult>
+  remove (data: string): Promise<DTORepositoryResult>
 }

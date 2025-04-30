@@ -6,6 +6,7 @@ export type DTOMember = {
   photo?: string
 }
 
-export type DTOSavedMember = {
-  id: string
+export type DTORepositoryResult = {
+  id: string,
+  removed?: boolean
 }
