@@ -1,6 +1,7 @@
-import MemberRepository from '@base/repositories/member-repository'
+import Member from '@base/entities/member'
 import IRepository from '@base/repositories/repository'
 import CreateMemberService from '@base/services/create-member-service'
+import ListMemberService from '@base/services/list-member-service'
 import RemoveMemberService from '@base/services/remove-member-service'
 import UpdateMemberService from '@base/services/update-member-service'
 import assert from 'assert'
@@ -14,6 +15,7 @@ describe('members suite tests', () => {
         save: () => Promise.resolve({ id: expectedResult.id }),
         remove: () => Promise.resolve({ id: expectedResult.id, removed: true }),
         update: () => Promise.resolve({ id: expectedResult.id, updated: true }),
+        list: () => Promise.resolve(Array(3).fill(new Member('123', 'Sunda', 'sunda', new Date()))),
       }
       it('Should create a member', async () => {
         const createMemberService = new CreateMemberService(mockRepo)
@@ -46,6 +48,15 @@ describe('members suite tests', () => {
         const updateMemberService = new UpdateMemberService(mockRepo)
         const result = await updateMemberService.execute(data)
         assert.deepStrictEqual(result, { ...expectedResult, updated: true })
+      })
+      it('should list members', async () => {
+        const filter = {
+          groupId: '123'
+        }
+        const listMemberService = new ListMemberService(mockRepo)
+        const result = await listMemberService.execute(filter)
+        const expectedResult = Array(3).fill(new Member('123', 'Sunda', 'sunda', new Date()))
+        assert.deepStrictEqual(result, expectedResult)
       })
     })
   })
