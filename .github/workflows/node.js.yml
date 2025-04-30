@@ -18,5 +18,8 @@ jobs:
       uses: actions/setup-node@v4
       with:
         node: 22
+    - run: |
+        export TERM=xterm-256color
+        echo "TERM is now: $TERM"
     - run: npm ci
     - run: npm test
