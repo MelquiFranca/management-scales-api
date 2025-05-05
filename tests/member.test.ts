@@ -5,7 +5,7 @@ import ListMemberService from '@base/services/list-member-service'
 import RemoveMemberService from '@base/services/remove-member-service'
 import UpdateMemberService from '@base/services/update-member-service'
 import assert from 'assert'
-import { describe, it, afterEach } from 'node:test'
+import { describe, it } from 'node:test'
 
 describe('members suite tests', () => {
   const birthday = new Date()
@@ -113,6 +113,24 @@ describe('members suite tests', () => {
           throw new Error('should not pass')
         } catch (error) {
           assert.deepStrictEqual(error, new Error('Invalid username'))
+        }
+      })
+      it('should fail to create member if invalid groupId', async () => {
+        const createMemberService = new CreateMemberService(mockRepo)
+        const data = {
+          name: 'Sunda',
+          username: 'sunda',
+          birthday,
+          type: 'user',
+          groupId: '',
+          password: '12345',
+          photo: ''
+        }
+        try {
+          await createMemberService.execute(data)
+          throw new Error('should not pass')
+        } catch (error) {
+          assert.deepStrictEqual(error, new Error('Invalid groupId'))
         }
       })
     })
