@@ -1,7 +1,8 @@
 import { DTOMember, DTORepositoryResult } from '@base/dtos'
-import { MongoClient, Db, Document, Collection, UpdateResult } from 'mongodb'
+import { MongoClient, Db, Document, Collection, UpdateResult, WithId } from 'mongodb'
+import IDatabase from './idatabase'
 
-export default class Database {
+export default class Database implements IDatabase {
   #client: MongoClient
   #db?: Db
   #databaseName: string
@@ -16,9 +17,9 @@ export default class Database {
   async disconnect () {
     await this.#client.close()
   }
-  async list (collectionName: string, filter: Object): Promise<Document[]> {
+  async list<Type>(collectionName: string, filter: Object): Promise<Type[]> {
     const collection = this.#getCollection(collectionName)
-    return collection.find(filter).toArray()
+    return collection.find(filter).toArray() as unknown as Type[]
   }
   async save (collectionName: string, member: DTOMember): Promise<DTORepositoryResult> {
     const collection = this.#getCollection(collectionName)
