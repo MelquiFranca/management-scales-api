@@ -16,7 +16,7 @@ export default class Database {
   async disconnect () {
     await this.#client.close()
   }
-  list (collectionName: string, filter: Object): Promise<Document[]> {
+  async list (collectionName: string, filter: Object): Promise<Document[]> {
     const collection = this.#getCollection(collectionName)
     return collection.find(filter).toArray()
   }
