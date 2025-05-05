@@ -11,7 +11,7 @@ export default class MemberController {
   #collectionName = 'members'
   #repository: IRepository
   constructor (database: IDatabase) {
-    this.#repository = new MemberRepository(database, this.path)
+    this.#repository = new MemberRepository(database)
   }
   async create (req: Request, res: Response) {
     const { body } = req

@@ -5,4 +5,5 @@ export default interface IRepository {
   remove (data: string): Promise<DTORepositoryResult>
   update (data: Object): Promise<DTORepositoryResult>
   list<Type>(data?: Object): Promise<Type[]>
+  findByQuery<Type>(data?: Object, options?: Object): Promise<Type|null>
 }

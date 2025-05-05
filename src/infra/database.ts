@@ -1,5 +1,5 @@
-import { DTOCreateMember, DTOMember, DTORepositoryResult } from '@base/dtos'
-import { MongoClient, Db, Document, Collection, ObjectId } from 'mongodb'
+import { DTOCreateMember, DTORepositoryResult } from '@base/dtos'
+import { MongoClient, Db, Collection, ObjectId } from 'mongodb'
 import IDatabase from './idatabase'
 
 export default class Database implements IDatabase {
@@ -37,6 +37,10 @@ export default class Database implements IDatabase {
       id: memberId,
       removed: !!result.deletedCount
     }
+  }
+  async find<Type>(collectionName: string, filter: Object, options?: Object): Promise<Type|null> {
+    const collection = this.#getCollection(collectionName)
+    return collection.findOne(filter, options)
   }
   #getCollection (name: string): Collection {
     if (!this.#db) throw new Error('Database not connected')
