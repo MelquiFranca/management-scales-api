@@ -11,6 +11,7 @@ export default class CreateMemberService {
     if (data.password?.length < 3) throw new Error('Invalid password')
     if (data.name?.length < 3) throw new Error('Invalid name')
     if (data.username?.length < 3) throw new Error('Invalid username')
+    if (!data.groupId?.length) throw new Error('Invalid groupId')
     data.password = this.#cryptPassword(data.password)
     return this.repository.save(data)
   }
