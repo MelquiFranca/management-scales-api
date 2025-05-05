@@ -5,4 +5,5 @@ export default interface IDatabase {
   disconnect (): Promise<any>
   list<Type>(repositoryName: string, data: Object): Promise<Type[]>
   save (repositoryName: string, data: Object): Promise<DTORepositoryResult>
+  remove (repositoryName: string, data: Object): Promise<DTORepositoryResult>
 }

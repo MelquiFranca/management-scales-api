@@ -12,6 +12,7 @@ import app from './infra/server'
   const memberControler = new MemberController(database)
   app.post(`/${memberControler.path}`, memberControler.create.bind(memberControler))
   app.get(`/${memberControler.path}`, memberControler.list.bind(memberControler))
+  app.delete(`/${memberControler.path}`, memberControler.remove.bind(memberControler))
 
   app.listen(port, () => console.log(`Running in port ${port}`))
   process.addListener('SIGTERM', async () => {
