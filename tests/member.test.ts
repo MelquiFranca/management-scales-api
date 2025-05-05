@@ -8,16 +8,16 @@ import assert from 'assert'
 import { describe, it, afterEach } from 'node:test'
 
 describe('members suite tests', () => {
+  const birthday = new Date()
+  const expectedResult = { id: '123' }
+  const mockRepo: IRepository = {
+    save: () => Promise.resolve({ id: expectedResult.id }),
+    remove: () => Promise.resolve({ id: expectedResult.id, removed: true }),
+    update: () => Promise.resolve({ id: expectedResult.id, updated: true }),
+    list: () => Promise.resolve(Array(3).fill(new Member('123', 'Sunda', 'sunda', new Date()))),
+  }
   describe('create members', () => {
     describe('sucess cases', () => {
-      const expectedResult = { id: '123' }
-      const birthday = new Date()
-      const mockRepo: IRepository = {
-        save: () => Promise.resolve({ id: expectedResult.id }),
-        remove: () => Promise.resolve({ id: expectedResult.id, removed: true }),
-        update: () => Promise.resolve({ id: expectedResult.id, updated: true }),
-        list: () => Promise.resolve(Array(3).fill(new Member('123', 'Sunda', 'sunda', new Date()))),
-      }
       it('Should create a member', async () => {
         const createMemberService = new CreateMemberService(mockRepo)
         const data = {
@@ -58,6 +58,26 @@ describe('members suite tests', () => {
         const result = await listMemberService.execute(filter)
         const expectedResult = Array(3).fill(new Member('123', 'Sunda', 'sunda', new Date()))
         assert.deepStrictEqual(result, expectedResult)
+      })
+    })
+    describe('fail cases', () => {
+      it('should fail to create member if invalid password', async () => {
+        const createMemberService = new CreateMemberService(mockRepo)
+        const data = {
+          name: 'Sunda Foo',
+          username: 'sunda',
+          birthday,
+          type: 'user',
+          groupId: '456',
+          password: '12',
+          photo: ''
+        }
+        try {
+          await createMemberService.execute(data)
+          throw new Error('should not pass')
+        } catch (error) {
+          assert.deepStrictEqual(error, new Error('Invalid password'))
+        }
       })
     })
   })
