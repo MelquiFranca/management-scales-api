@@ -7,7 +7,7 @@ export default class ListMemberService {
   async execute (filter?: DTOFilter): Promise<Member[]> {
     const members = await this.repository.list<DTOMember>(filter)
     return members.map(member => new Member(
-      member.id,
+      member._id.toString(),
       member.name,
       member.username,
       member.birthday,

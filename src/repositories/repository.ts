@@ -1,5 +1,4 @@
 import { DTORepositoryResult } from '@base/dtos'
-import Member from '@base/entities/member'
 
 export default interface IRepository {
   save (data: Object): Promise<DTORepositoryResult>

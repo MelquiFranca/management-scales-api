@@ -39,7 +39,7 @@ describe('members suite tests', () => {
       })
       it('should update a member by id', async () => {
         const data = {
-          id: '123',
+          _id: '123',
           name: 'Bobra',
           birthday,
           username: 'foo',
