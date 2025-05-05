@@ -1,5 +1,5 @@
 export type DTOMember = {
-  id?: string,
+  id: string,
   name: string,
   username: string,
   type: string,
