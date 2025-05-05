@@ -3,10 +3,10 @@ import Entity from './entity'
 export default class Member implements Entity {
   constructor(
     private readonly _id: string,
-    private name: string,
-    private username: string,
-    private birthday: Date,
-    private photo?: string,
+    readonly name: string,
+    readonly username: string,
+    readonly birthday: Date,
+    readonly photo?: string,
     private password?: string,
   ) {}
   get id (): string {
