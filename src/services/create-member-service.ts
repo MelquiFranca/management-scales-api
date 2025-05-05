@@ -9,6 +9,8 @@ export default class CreateMemberService {
   }
   async execute (data: DTOCreateMember): Promise<DTORepositoryResult> {
     if (data.password?.length < 3) throw new Error('Invalid password')
+    if (data.name?.length < 3) throw new Error('Invalid name')
+    if (data.username?.length < 3) throw new Error('Invalid username')
     data.password = this.#cryptPassword(data.password)
     return this.repository.save(data)
   }
