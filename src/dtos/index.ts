@@ -7,6 +7,15 @@ export type DTOMember = {
   password?: string,
   photo?: string
 }
+export type DTOCreateMember = {
+  id?: string,
+  name: string,
+  username: string,
+  type: string,
+  birthday: Date,
+  password: string,
+  photo?: string
+}
 
 export type DTORepositoryResult = {
   id: string,

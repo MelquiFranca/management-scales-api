@@ -1,9 +1,15 @@
-import { DTOMember, DTORepositoryResult } from '@base/dtos'
+import crypto, { Hash } from 'crypto'
+import { DTOCreateMember, DTORepositoryResult } from '@base/dtos'
 import IRepository from '@base/repositories/repository'
 
 export default class CreateMemberService {
   constructor (private readonly repository: IRepository) {}
-  async execute (data: DTOMember): Promise<DTORepositoryResult> {
+  #cryptPassword (password: string): string {
+    return password
+  }
+  async execute (data: DTOCreateMember): Promise<DTORepositoryResult> {
+    if (data.password?.length < 3) throw new Error('Invalid password')
+    data.password = this.#cryptPassword(data.password)
     return this.repository.save(data)
   }
 }
