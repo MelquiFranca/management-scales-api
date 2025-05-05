@@ -1,10 +1,17 @@
-import { DTOFilter } from '@base/dtos'
+import { DTOFilter, DTOMember } from '@base/dtos'
 import Member from '@base/entities/member'
 import IRepository from '@base/repositories/repository'
 
 export default class ListMemberService {
   constructor (private readonly repository: IRepository) {}
-  execute (filter?: DTOFilter): Promise<Member[]> {
-    return this.repository.list(filter)
+  async execute (filter?: DTOFilter): Promise<Member[]> {
+    const members = await this.repository.list<DTOMember>(filter)
+    return members.map(member => new Member(
+      member.id,
+      member.name,
+      member.username,
+      member.birthday,
+      member.photo
+    ))
   }
 } 
