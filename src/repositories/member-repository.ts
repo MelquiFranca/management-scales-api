@@ -5,7 +5,7 @@ import IDatabase from '@base/infra/idatabase'
 
 export default class MemberRepository implements IRepository {
   constructor (
-    private readonly database: IDatabase, 
+    private readonly database: IDatabase,
     private readonly collectionName: string
   ) {}
   async save (data: DTOMember): Promise<DTORepositoryResult> {
