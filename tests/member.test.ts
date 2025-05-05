@@ -79,6 +79,42 @@ describe('members suite tests', () => {
           assert.deepStrictEqual(error, new Error('Invalid password'))
         }
       })
+      it('should fail to create member if invalid name', async () => {
+        const createMemberService = new CreateMemberService(mockRepo)
+        const data = {
+          name: '',
+          username: 'sunda',
+          birthday,
+          type: 'user',
+          groupId: '456',
+          password: '12345',
+          photo: ''
+        }
+        try {
+          await createMemberService.execute(data)
+          throw new Error('should not pass')
+        } catch (error) {
+          assert.deepStrictEqual(error, new Error('Invalid name'))
+        }
+      })
+      it('should fail to create member if invalid username', async () => {
+        const createMemberService = new CreateMemberService(mockRepo)
+        const data = {
+          name: 'Sunda',
+          username: 'su',
+          birthday,
+          type: 'user',
+          groupId: '456',
+          password: '12345',
+          photo: ''
+        }
+        try {
+          await createMemberService.execute(data)
+          throw new Error('should not pass')
+        } catch (error) {
+          assert.deepStrictEqual(error, new Error('Invalid username'))
+        }
+      })
     })
   })
 })
