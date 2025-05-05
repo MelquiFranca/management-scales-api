@@ -1,13 +1,11 @@
-import Entity from './entity'
-
-export default class Member implements Entity {
+export default class Member {
   constructor(
     private readonly _id: string,
     readonly name: string,
     readonly username: string,
     readonly birthday: Date,
     readonly photo?: string,
-    private password?: string,
+    private readonly password?: string,
   ) {}
   get id (): string {
     return this._id
