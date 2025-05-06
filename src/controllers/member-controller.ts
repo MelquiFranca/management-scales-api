@@ -1,4 +1,3 @@
-import Database from '@base/infra/database'
 import IDatabase from '@base/infra/idatabase'
 import MemberRepository from '@base/repositories/member-repository'
 import IRepository from '@base/repositories/repository'
@@ -8,7 +7,7 @@ import RemoveMemberService from '@base/services/remove-member-service'
 import { Request, Response } from 'express'
 
 export default class MemberController {
-  #collectionName = 'members'
+  #path = 'members'
   #repository: IRepository
   constructor (database: IDatabase) {
     this.#repository = new MemberRepository(database)
@@ -43,6 +42,6 @@ export default class MemberController {
     }
   }
   get path () {
-    return this.#collectionName
+    return this.#path
   }
 }
