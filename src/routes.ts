@@ -8,7 +8,7 @@ export default function (app: Express, database: IDatabase) {
   const router = Router()
   const memberControler = new MemberController(database)
   const loginController = new LoginController(database)
-  router.put(`/${loginController.path}`, loginController.login.bind(loginController))
+  router.post(`/${loginController.path}`, loginController.login.bind(loginController))
   app.use(router)
   const routerWithAuthenticator = Router()
   routerWithAuthenticator.use(validate)
