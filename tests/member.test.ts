@@ -14,7 +14,8 @@ describe('members suite tests', () => {
     save: () => Promise.resolve({ id: expectedResult.id }),
     remove: () => Promise.resolve({ id: expectedResult.id, removed: true }),
     update: () => Promise.resolve({ id: expectedResult.id, updated: true }),
-    list: () => Promise.resolve(Array(3).fill(new Member('123', 'Sunda', 'sunda', new Date()))),
+    list: () => Promise.resolve(Array(3).fill(new Member('123', 'Sunda', 'sunda', new Date(), '123'))),
+    findByQuery: () => Promise.resolve(Array(1).fill(new Member('123', 'Sunda', 'sunda', new Date(), '123'))[0]),
   }
   describe('create members', () => {
     describe('sucess cases', () => {
@@ -44,6 +45,7 @@ describe('members suite tests', () => {
           birthday,
           username: 'foo',
           type: 'user',
+          groupId: '123',
           password: '123'
         }
         const updateMemberService = new UpdateMemberService(mockRepo)
@@ -56,7 +58,7 @@ describe('members suite tests', () => {
         }
         const listMemberService = new ListMemberService(mockRepo)
         const result = await listMemberService.execute(filter)
-        const expectedResult = Array(3).fill(new Member('123', 'Sunda', 'sunda', new Date()))
+        const expectedResult = Array(3).fill(new Member('123', 'Sunda', 'sunda', new Date(), '123'))
         assert.deepStrictEqual(result, expectedResult)
       })
     })

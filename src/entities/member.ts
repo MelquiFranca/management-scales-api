@@ -4,6 +4,7 @@ export default class Member {
     readonly name: string,
     readonly username: string,
     readonly birthday: Date,
+    readonly groupId: string,
     readonly photo?: string,
     private readonly password?: string,
   ) {}
