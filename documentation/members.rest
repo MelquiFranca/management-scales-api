@@ -9,7 +9,7 @@ Authorization: {{authorization}}
 {
   "groupId": "607c724a0171590015ff9c94",
   "name": "Bobrao Foo",
-  "username": "bobraofoo",
+  "username": "bobraofoo", // INDICE
   "password": "99bb",
   "photo": "https://www.google.com.br",
   "birthday": "2025-05-05T12:44:32.338Z",

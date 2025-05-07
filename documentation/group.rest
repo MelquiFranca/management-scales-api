@@ -1,0 +1,29 @@
+@url = http://localhost:8002/groups
+@authorization = Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2ODFhNTRhMGI1ZWM0NGVhMGI5MjE2MTQiLCJuYW1lIjoiTWVscXVpIFAuIEZyYW5jYSIsInVzZXJuYW1lIjoiZnJhbmNhIiwidHlwZSI6InVzZXIiLCJncm91cElkIjoiNjA3YzcyNGEwMTcxNTkwMDE1ZmY5Yzk0IiwiaWF0IjoxNzQ2NjQ5MTA3LCJleHAiOjE3NDY2NTI3MDd9.bto2GVVvAw_prZBsI6rxOWhUTViMKb21fuYs_NsOxBs
+
+### Cria grupo
+POST {{url}}
+Content-Type: application/json
+Authorization: {{authorization}}
+
+{
+  "name": "Church Music", // INDICE
+  "image": "https://www.google.com.br"
+}
+
+### Lista grupos
+GET {{url}}
+Content-Type: application/json
+Authorization: {{authorization}}
+
+{
+}
+
+### Exclui grupo
+DELETE {{url}}
+Content-Type: application/json
+Authorization: {{authorization}}
+
+{
+  "id": "681bc090bb052e484933363d"
+}
