@@ -11,7 +11,7 @@ interface CustomRequest extends Request {
   token: DTOMember
 }
 export default class GroupController {
-  #path = 'events'
+  #path = 'groups'
   #repository: IRepository
   constructor (database: IDatabase) {
     this.#repository = new GroupRepository(database)
