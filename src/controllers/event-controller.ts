@@ -4,6 +4,7 @@ import EventRepository from '@base/repositories/event-repository'
 import IRepository from '@base/repositories/repository'
 import CreateEventService from '@base/services/create-event-service'
 import ListEventService from '@base/services/list-event-service'
+import RemoveEventService from '@base/services/remove-event-service'
 import { Request, Response } from 'express'
 
 interface CustomRequest extends Request {
@@ -31,6 +32,17 @@ export default class EventController {
       const listEventService = new ListEventService(this.#repository)
       const events = await listEventService.execute({ groupId: token.groupId.toString() })
       res.json({ events })
+    } catch (error) {
+      res.status(400).json(error)
+    }
+  }
+  async remove (req: Request, res: Response) {
+    try {
+      const { body } = req
+      const { token } = (req as CustomRequest)
+      const removeEventService = new RemoveEventService(this.#repository)
+      const removed = await removeEventService.execute(body.id, { groupId: token.groupId })
+      res.json(removed)
     } catch (error) {
       res.status(400).json(error)
     }
