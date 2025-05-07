@@ -36,3 +36,8 @@ export type DTOEvent = {
   date: Date
   unavaliableMemberIds: string[]
 }
+export type DTOGroup = {
+  name: string
+  image?: string
+  created?: Date
+}
