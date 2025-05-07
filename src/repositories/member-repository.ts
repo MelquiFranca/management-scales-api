@@ -11,8 +11,8 @@ export default class MemberRepository implements IRepository {
   async save (data: DTOMember): Promise<DTORepositoryResult> {
     return this.database.save(this.collectionName, data)
   }
-  async remove(id: string): Promise<DTORepositoryResult> {
-    return Promise.resolve({ id, removed: true })
+  async remove(id: string, filter?: Object): Promise<DTORepositoryResult> {
+    return this.database.remove(this.collectionName, id, filter)
   }
   async update(data: Member): Promise<DTORepositoryResult> {
     return Promise.resolve({ id: data.id, updated: true })

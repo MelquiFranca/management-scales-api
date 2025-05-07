@@ -1,4 +1,4 @@
-import { DTOCreateMember, DTORepositoryResult } from '@base/dtos'
+import { DTOCreateMember, DTOFilter, DTORepositoryResult } from '@base/dtos'
 import { MongoClient, Db, Collection, ObjectId } from 'mongodb'
 import IDatabase from './idatabase'
 
@@ -29,12 +29,12 @@ export default class Database implements IDatabase {
       id: result.insertedId?.toString()
     }
   }
-  async remove (collectionName: string, memberId: string): Promise<DTORepositoryResult> {
+  async remove (collectionName: string, id: string, filter?: DTOFilter): Promise<DTORepositoryResult> {
     const collection = this.#getCollection(collectionName)
-    const result = await collection.deleteOne({ _id: new ObjectId(memberId) })
-    if (!!result.deletedCount) throw new Error('Failed to create member')
+    const result = await collection.deleteOne({ _id: new ObjectId(id), ...filter })
+    if (!result?.deletedCount) throw new Error('Failed to create member')
     return {
-      id: memberId,
+      id,
       removed: !!result.deletedCount
     }
   }
