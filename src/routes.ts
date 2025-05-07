@@ -5,6 +5,7 @@ import LoginController from './controllers/login-controller'
 import { validate } from './middlewares/authenticator'
 import EventController from './controllers/event-controller'
 import GroupController from './controllers/group-controller'
+import ScaleController from './controllers/scale-controller'
 
 export default function (app: Express, database: IDatabase) {
   const router = Router()
@@ -16,7 +17,12 @@ export default function (app: Express, database: IDatabase) {
   const memberControler = new MemberController(database)
   const eventController = new EventController(database)
   const groupController = new GroupController(database)
+  const scaleController = new ScaleController(database)
 
+  routerWithAuthenticator.post(`/${scaleController.path}`, scaleController.create.bind(scaleController))
+  routerWithAuthenticator.get(`/${scaleController.path}`, scaleController.list.bind(scaleController))
+  routerWithAuthenticator.delete(`/${scaleController.path}`, scaleController.remove.bind(scaleController))
+  
   routerWithAuthenticator.post(`/${eventController.path}`, eventController.create.bind(eventController))
   routerWithAuthenticator.get(`/${eventController.path}`, eventController.list.bind(eventController))
   routerWithAuthenticator.delete(`/${eventController.path}`, eventController.remove.bind(eventController))
