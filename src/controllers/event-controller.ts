@@ -1,3 +1,4 @@
+import { DTOMember } from '@base/dtos'
 import IDatabase from '@base/infra/idatabase'
 import EventRepository from '@base/repositories/event-repository'
 import IRepository from '@base/repositories/repository'
@@ -5,6 +6,9 @@ import CreateEventService from '@base/services/create-event-service'
 import ListEventService from '@base/services/list-event-service'
 import { Request, Response } from 'express'
 
+interface CustomRequest extends Request {
+  token: DTOMember
+}
 export default class EventController {
   #path = 'events'
   #repository: IRepository
@@ -23,8 +27,9 @@ export default class EventController {
   }
   async list (req: Request, res: Response) {
     try {
+      const { token } = (req as CustomRequest)
       const listEventService = new ListEventService(this.#repository)
-      const events = await listEventService.execute()
+      const events = await listEventService.execute({ groupId: token.groupId.toString() })
       res.json({ events })
     } catch (error) {
       res.status(400).json(error)

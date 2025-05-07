@@ -1,3 +1,4 @@
+import { DTOMember } from '@base/dtos'
 import IDatabase from '@base/infra/idatabase'
 import MemberRepository from '@base/repositories/member-repository'
 import IRepository from '@base/repositories/repository'
@@ -6,6 +7,9 @@ import ListMemberService from '@base/services/list-member-service'
 import RemoveMemberService from '@base/services/remove-member-service'
 import { Request, Response } from 'express'
 
+interface CustomRequest extends Request {
+  token: DTOMember
+}
 export default class MemberController {
   #path = 'members'
   #repository: IRepository
@@ -24,8 +28,9 @@ export default class MemberController {
   }
   async list (req: Request, res: Response) {
     try {
+      const { token } = (req as CustomRequest)
       const listMemberService = new ListMemberService(this.#repository)
-      const members = await listMemberService.execute()
+      const members = await listMemberService.execute({ groupId: token.groupId })
       res.json({ members })
     } catch (error) {
       res.status(400).json(error)
