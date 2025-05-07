@@ -35,7 +35,7 @@ describe('members suite tests', () => {
       })
       it('should remove a member by id', async () => {
         const removeMemberService = new RemoveMemberService(mockRepo)
-        const result = await removeMemberService.execute('123')
+        const result = await removeMemberService.execute('123', { groupId: '456' })
         assert.deepStrictEqual(result, { ...expectedResult, removed: true })
       })
       it('should update a member by id', async () => {
