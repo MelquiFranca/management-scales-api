@@ -1,0 +1,42 @@
+@url = http://localhost:8002/scales
+@authorization = Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2ODFhNTRhMGI1ZWM0NGVhMGI5MjE2MTQiLCJuYW1lIjoiTWVscXVpIFAuIEZyYW5jYSIsInVzZXJuYW1lIjoiZnJhbmNhIiwidHlwZSI6InVzZXIiLCJncm91cElkIjoiNjA3YzcyNGEwMTcxNTkwMDE1ZmY5Yzk0IiwiaWF0IjoxNzQ2NjU3MDA0LCJleHAiOjE3NDY2NjA2MDR9.kv3QzA2s21UYSjiwYn6mhXKuJUXhl66SWH0eQAjhUMM
+
+### Cria escala
+POST {{url}}
+Content-Type: application/json
+Authorization: {{authorization}}
+
+{
+  "eventId": "607c724a0171590015ff9c94",
+  "groupId": "607c724a0171590015ff9c94",
+  "rosteredMembers": [
+    {
+      "functionId": "662853c4062635feb8479f51",
+      "memberIds": ["681a54a0b5ec44ea0b921614", "662853c4062635feb8479f52"]
+    },
+    {
+      "functionId": "681a54a0b5ec44ea0b921614",
+      "memberIds": ["681a54a0b5ec44ea0b921614", "662853c4062635feb8479f52"]
+    }
+  ],
+  "messages": [{
+    "teste": "texto"
+  }]
+}
+
+### Lista escalas
+GET {{url}}
+Content-Type: application/json
+Authorization: {{authorization}}
+
+{
+}
+
+### Exclui escala
+DELETE {{url}}
+Content-Type: application/json
+Authorization: {{authorization}}
+
+{
+  "id": "681ba91b68406a4c15523b15"
+}
