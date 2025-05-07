@@ -1,0 +1,22 @@
+@url = http://localhost:8002/events
+@authorization = Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2ODFhNTRhMGI1ZWM0NGVhMGI5MjE2MTQiLCJuYW1lIjoiTWVscXVpIFAuIEZyYW5jYSIsInVzZXJuYW1lIjoiZnJhbmNhIiwidHlwZSI6InVzZXIiLCJncm91cElkIjoiNjA3YzcyNGEwMTcxNTkwMDE1ZmY5Yzk0IiwiaWF0IjoxNzQ2NjQzMDIwLCJleHAiOjE3NDY2NDY2MjB9.cDtx2D7KtSEcSB7J5ffX_Q5m6tkkue3zpK9Z23LA2es
+
+### Cria Evento
+POST {{url}}
+Content-Type: application/json
+Authorization: {{authorization}}
+
+{
+  "groupId": "607c724a0171590015ff9c94",
+  "date": "2025-05-06T18:22:08.663Z",
+  "dayShift": "noite",
+  "unavaliableMemberIds": ["662853c4062635feb8479f51"]
+}
+
+### Lista eventos
+GET {{url}}
+Content-Type: application/json
+Authorization: {{authorization}}
+
+{
+}

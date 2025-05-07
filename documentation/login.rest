@@ -1,0 +1,8 @@
+@url = http://localhost:8002/login
+
+POST {{url}}
+Content-Type: application/json
+
+{
+  "username": "franca", "password": "1234"
+}

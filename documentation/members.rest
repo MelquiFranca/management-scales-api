@@ -1,0 +1,25 @@
+@url = http://localhost:8002/members
+@authorization = Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2ODFhNTRhMGI1ZWM0NGVhMGI5MjE2MTQiLCJuYW1lIjoiTWVscXVpIFAuIEZyYW5jYSIsInVzZXJuYW1lIjoiZnJhbmNhIiwidHlwZSI6InVzZXIiLCJncm91cElkIjoiNjA3YzcyNGEwMTcxNTkwMDE1ZmY5Yzk0IiwiaWF0IjoxNzQ2NjQzMDIwLCJleHAiOjE3NDY2NDY2MjB9.cDtx2D7KtSEcSB7J5ffX_Q5m6tkkue3zpK9Z23LA2es
+
+### Cria membro
+POST {{url}}
+Content-Type: application/json
+Authorization: {{authorization}}
+
+{
+  "groupId": "607c724a0171590015ff9c94",
+  "name": "Bobrao Foo",
+  "username": "bobraofoo",
+  "password": "99bb",
+  "photo": "https://www.google.com.br",
+  "birthday": "2025-05-05T12:44:32.338Z",
+  "type": "user"
+}
+
+### Lista membros
+GET {{url}}
+Content-Type: application/json
+Authorization: {{authorization}}
+
+{
+}
