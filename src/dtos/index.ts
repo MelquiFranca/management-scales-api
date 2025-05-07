@@ -41,3 +41,17 @@ export type DTOGroup = {
   image?: string
   created?: Date
 }
+export type DTOMessage = {
+  text: string
+  memberId: string
+}
+export type DTORosteredMember = {
+  functionId: string
+  memberIds: string[]
+}
+export type DTOScale = {
+  groupId: string
+  eventId: string
+  messages: DTOMessage[]
+  rosteredMembers: DTORosteredMember[]
+}
