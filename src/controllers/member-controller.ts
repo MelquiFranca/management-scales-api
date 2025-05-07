@@ -37,10 +37,11 @@ export default class MemberController {
     }
   }
   async remove (req: Request, res: Response) {
-    const { body } = req
     try {
+      const { body } = req
+      const { token } = (req as CustomRequest)
       const removeMemberService = new RemoveMemberService(this.#repository)
-      const removed = await removeMemberService.execute(body.id)
+      const removed = await removeMemberService.execute(body.id, { groupId: token.groupId })
       res.json(removed)
     } catch (error) {
       res.status(400).json(error)
