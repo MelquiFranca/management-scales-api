@@ -23,3 +23,12 @@ Authorization: {{authorization}}
 
 {
 }
+
+### Exclui membro
+DELETE {{url}}
+Content-Type: application/json
+Authorization: {{authorization}}
+
+{
+  "id": "681bb2eca3b70bb5e9e52754"
+}
