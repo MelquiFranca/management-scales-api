@@ -31,15 +31,17 @@ export type DTOLoginMember = {
   password: string
 }
 export type DTOEvent = {
+  _id: string
   groupId: string
   dayShift: string
   date: Date
   unavaliableMemberIds: string[]
 }
 export type DTOGroup = {
+  _id: string
   name: string
   image?: string
-  created?: Date
+  created: Date
 }
 export type DTOMessage = {
   text: string
@@ -50,6 +52,7 @@ export type DTORosteredMember = {
   memberIds: string[]
 }
 export type DTOScale = {
+  _id: string
   groupId: string
   eventId: string
   messages: DTOMessage[]

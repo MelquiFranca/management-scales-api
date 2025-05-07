@@ -6,6 +6,6 @@ export default class Group {
     readonly created: Date
   ) {}
   get id (): string {
-    return this._id
+    return this._id.toString()
   }
 }

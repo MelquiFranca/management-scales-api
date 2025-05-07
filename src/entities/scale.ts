@@ -9,6 +9,6 @@ export default class Scale {
     readonly rosteredMembers: DTORosteredMember[]
   ) {}
   get id (): string {
-    return this._id
+    return this._id.toString()
   }
 }

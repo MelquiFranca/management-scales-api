@@ -9,6 +9,6 @@ export default class Member {
     private readonly password?: string,
   ) {}
   get id (): string {
-    return this._id
+    return this._id.toString()
   }
 }

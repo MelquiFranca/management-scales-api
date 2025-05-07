@@ -7,6 +7,6 @@ export default class EventScale {
     readonly unavaliableMemberIds: string[]
   ) {}
   get id (): string {
-    return this._id
+    return this._id.toString()
   }
 }
