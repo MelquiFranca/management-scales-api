@@ -1,26 +1,26 @@
 export type DTOMember = {
-  _id: string,
-  name: string,
-  username: string,
-  type: string,
-  birthday: Date,
-  groupId: string,
-  password?: string,
+  _id: string
+  name: string
+  username: string
+  type: string
+  birthday: Date
+  groupId: string
+  password?: string
   photo?: string
 }
 export type DTOCreateMember = {
-  id?: string,
-  name: string,
-  username: string,
-  type: string,
-  birthday: Date,
-  password: string,
+  id?: string
+  name: string
+  username: string
+  type: string
+  birthday: Date
+  password: string
   groupId: string
-  photo?: string,
+  photo?: string
 }
 export type DTORepositoryResult = {
-  id: string,
-  removed?: boolean,
+  id: string
+  removed?: boolean
   updated?: boolean
 }
 export type DTOFilter = {
@@ -29,4 +29,10 @@ export type DTOFilter = {
 export type DTOLoginMember = {
   username: string
   password: string
+}
+export type DTOEvent = {
+  groupId: string
+  dayShift: string
+  date: Date
+  unavaliableMemberIds: string[]
 }
