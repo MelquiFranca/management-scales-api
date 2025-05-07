@@ -4,5 +4,6 @@ POST {{url}}
 Content-Type: application/json
 
 {
-  "username": "franca", "password": "1234"
+  "username": "franca",
+  "password": "1234"
 }

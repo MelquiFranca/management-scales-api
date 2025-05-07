@@ -20,3 +20,12 @@ Authorization: {{authorization}}
 
 {
 }
+
+### Exclui evento
+DELETE {{url}}
+Content-Type: application/json
+Authorization: {{authorization}}
+
+{
+  "id": "681ba91b68406a4c15523b15"
+}
