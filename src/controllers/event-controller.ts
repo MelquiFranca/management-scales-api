@@ -23,6 +23,7 @@ export default class EventController {
       const created = await createEventService.execute(body)
       res.json(created)
     } catch (error) {
+      console.error(error)
       res.status(400).json(error)
     }
   }
@@ -33,6 +34,7 @@ export default class EventController {
       const events = await listEventService.execute({ groupId: token.groupId.toString() })
       res.json({ events })
     } catch (error) {
+      console.error(error)
       res.status(400).json(error)
     }
   }
@@ -44,6 +46,7 @@ export default class EventController {
       const removed = await removeEventService.execute(body.id, { groupId: token.groupId })
       res.json(removed)
     } catch (error) {
+      console.error(error)
       res.status(400).json(error)
     }
   }

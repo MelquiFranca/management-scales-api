@@ -24,6 +24,7 @@ export default class LoginController {
       const tokenResult = authenticate(result)
       res.json(tokenResult)
     } catch (error) {
+      console.error(error)
       res.status(400).json(error)
     }
   }

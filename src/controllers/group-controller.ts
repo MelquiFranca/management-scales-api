@@ -23,6 +23,7 @@ export default class GroupController {
       const created = await createGroupService.execute(body)
       res.json(created)
     } catch (error) {
+      console.error(error)
       res.status(400).json(error)
     }
   }
@@ -33,6 +34,7 @@ export default class GroupController {
       const events = await listGroupService.execute()
       res.json({ events })
     } catch (error) {
+      console.error(error)
       res.status(400).json(error)
     }
   }
@@ -44,6 +46,7 @@ export default class GroupController {
       const removed = await removeGroupService.execute(body.id)
       res.json(removed)
     } catch (error) {
+      console.error(error)
       res.status(400).json(error)
     }
   }

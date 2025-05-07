@@ -23,6 +23,7 @@ export default class MemberController {
       const created = await createMemberService.execute(body)
       res.json(created)
     } catch (error) {
+      console.error(error)
       res.status(400).json(error)
     }
   }
@@ -33,6 +34,7 @@ export default class MemberController {
       const members = await listMemberService.execute({ groupId: token.groupId })
       res.json({ members })
     } catch (error) {
+      console.error(error)
       res.status(400).json(error)
     }
   }
@@ -44,6 +46,7 @@ export default class MemberController {
       const removed = await removeMemberService.execute(body.id, { groupId: token.groupId })
       res.json(removed)
     } catch (error) {
+      console.error(error)
       res.status(400).json(error)
     }
   }
