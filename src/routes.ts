@@ -15,6 +15,7 @@ export default function (app: Express, database: IDatabase) {
   const routerWithAuthenticator = Router()
   routerWithAuthenticator.use(validate)
   routerWithAuthenticator.post(`/${eventController.path}`, eventController.create.bind(eventController))
+  routerWithAuthenticator.get(`/${eventController.path}`, eventController.list.bind(eventController))
   routerWithAuthenticator.post(`/${memberControler.path}`, memberControler.create.bind(memberControler))
   routerWithAuthenticator.get(`/${memberControler.path}`, memberControler.list.bind(memberControler))
   routerWithAuthenticator.delete(`/${memberControler.path}`, memberControler.remove.bind(memberControler))
