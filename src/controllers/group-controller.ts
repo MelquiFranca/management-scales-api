@@ -31,8 +31,8 @@ export default class GroupController {
     try {
       const { token } = (req as CustomRequest)
       const listGroupService = new ListGroupService(this.#repository)
-      const events = await listGroupService.execute()
-      res.json({ events })
+      const groups = await listGroupService.execute()
+      res.json({ groups })
     } catch (error) {
       console.error(error)
       res.status(400).json(error)
