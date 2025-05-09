@@ -5,5 +5,13 @@ Content-Type: application/json
 
 {
   "username": "franca",
-  "password": "1234"
+  "password": "1234",
+  "subscription": {
+    "endpoint": "sunda",
+    "expirationTime": 3600,
+    "keys": {
+      "p256dh": "te",
+      "auth": "te"
+    }
+  }
 }
