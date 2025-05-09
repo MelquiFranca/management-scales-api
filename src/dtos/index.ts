@@ -58,3 +58,13 @@ export type DTOScale = {
   messages: DTOMessage[]
   rosteredMembers: DTORosteredMember[]
 }
+export type DTOSubscription = {
+  groupId: string
+  endpoint: string
+  expirationTime: Number
+  userId: string
+  keys: {
+    p256dh: string
+    auth: string
+  }
+}
