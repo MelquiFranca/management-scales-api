@@ -14,9 +14,14 @@ export function validate (req: Request, res: Response, next: NextFunction) {
     res.status(401).send('Not authenticated')
     return
   }
-  const token = jwt.verify(authorization.replace('Bearer ', ''), SECRET_PUBLIC_KEY) as DTOMember
-  (req as CustomRequest).token = token
-  next()
+  try {
+    const token = jwt.verify(authorization.replace('Bearer ', ''), SECRET_PUBLIC_KEY) as DTOMember
+    (req as CustomRequest).token = token
+    next()
+  } catch (error: Error | any) {
+    res.status(401).send(error.message || 'Not authenticated')
+    return
+  }
 }
 export function authenticate (member: DTOMember) {
   return jwt.sign(member, SECRET_PUBLIC_KEY, { expiresIn: EXPIRES_IN })
