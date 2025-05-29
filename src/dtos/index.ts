@@ -19,7 +19,7 @@ export type DTOCreateMember = {
   photo?: string
 }
 export type DTORepositoryResult = {
-  id: string
+  id?: string
   removed?: boolean
   updated?: boolean
 }
@@ -64,6 +64,14 @@ export type DTOSubscription = {
   expirationTime: Number
   userId: string
   keys: {
+    p256dh: string
+    auth: string
+  }
+}
+export type DTOUpdateSubscription = {
+  endpoint?: string
+  expirationTime?: Number
+  keys?: {
     p256dh: string
     auth: string
   }

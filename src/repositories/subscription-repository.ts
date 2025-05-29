@@ -1,5 +1,5 @@
 import IRepository from './repository'
-import { DTOSubscription, DTOFilter, DTORepositoryResult } from '@base/dtos'
+import { DTOSubscription, DTOFilter, DTORepositoryResult, DTOUpdateSubscription } from '@base/dtos'
 import IDatabase from '@base/infra/idatabase'
 import Subscription from '@base/entities/subscription'
 
@@ -15,7 +15,20 @@ export default class SubscriptionRepository implements IRepository {
     return this.database.remove(this.collectionName, id, filter)
   }
   async update(data: Subscription): Promise<DTORepositoryResult> {
-    return Promise.resolve({ id: data.id, updated: true })
+    return  this.database.update(
+      this.collectionName,
+      {
+        userId: data.userId,
+        groupId: data.groupId
+      },
+      {
+        $set: {
+          endpoint: data.endpoint,
+          expirationTime: data.expirationTime,
+          keys: data.keys
+        }
+      }
+    )
   }
   async list<DTOSubscription>(filter: DTOFilter): Promise<DTOSubscription[]> {
     return this.database.list<DTOSubscription>(this.collectionName, filter)

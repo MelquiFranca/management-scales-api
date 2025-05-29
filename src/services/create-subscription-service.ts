@@ -8,6 +8,6 @@ export default class CreateSubscriptionService {
     if (!Number.isInteger(data.expirationTime)) throw new Error('Invalid subscription: expirationTime')
     if (!data.userId) throw new Error('Invalid subscription: userId')
     if (!data.keys?.auth || !data.keys?.p256dh) throw new Error('Invalid subscription: keys')
-    return this.repository.save(data)
+    return this.repository.update(data)
   }
 }

@@ -29,10 +29,19 @@ export default class Database implements IDatabase {
       id: result.insertedId?.toString()
     }
   }
+  async update(collectionName: string, filter: Object, updateData: Object): Promise<DTORepositoryResult> {
+    const collection = this.#getCollection(collectionName)
+    const result = await collection.updateOne(filter, updateData, { upsert: true })
+    if (!result.acknowledged) throw new Error('Failed to update member')
+    return {
+      id: result.upsertedId?.toString(),
+      updated: true
+    }
+  }
   async remove (collectionName: string, id: string, filter?: DTOFilter): Promise<DTORepositoryResult> {
     const collection = this.#getCollection(collectionName)
     const result = await collection.deleteOne({ _id: new ObjectId(id), ...filter })
-    if (!result?.deletedCount) throw new Error('Failed to create member')
+    if (!result?.deletedCount) throw new Error('Failed to remove member')
     return {
       id,
       removed: !!result.deletedCount
