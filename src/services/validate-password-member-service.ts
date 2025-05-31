@@ -2,7 +2,6 @@ import crypto from 'crypto'
 import IRepository from '@base/repositories/repository'
 import { DTOLoginMember, DTOMember } from '@base/dtos'
 
-const SECRET_PUBLIC_KEY = 'teste'
 export default class ValidatePasswordMemberService {
   constructor (private readonly repository: IRepository) {}
   #cryptPassword (password: string): string {
@@ -10,7 +9,7 @@ export default class ValidatePasswordMemberService {
   }
   async execute (data: DTOLoginMember): Promise<DTOMember> {
     const cryptedPassowrd = this.#cryptPassword(data.password)
-    const result = await this.repository.findByQuery<DTOMember>({ username: data.username, password: cryptedPassowrd })
+    const result = await this.repository.findByQuery<DTOMember>({ username: data.username, password: cryptedPassowrd }, { projection: { password: 0 }})
     if (!result) throw new Error('Member not found OR invalid password')
     return {
       _id: result._id.toString(),
