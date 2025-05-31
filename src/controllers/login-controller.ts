@@ -26,15 +26,15 @@ export default class LoginController {
         username: body.username,
       })
       const tokenResult = authenticate(validatedPassword)
+      res.json(tokenResult)
       if (body.subscription) {
         const createSubscription = new CreateSubscriptionService(this.#repositorySubscription)
-        await createSubscription.execute({
+        createSubscription.execute({
           ...body.subscription,
           userId: validatedPassword._id,
           groupId: validatedPassword.groupId
         })
       }
-      res.json(tokenResult)
     } catch (error) {
       console.error(error)
       res.status(400).json(error)
