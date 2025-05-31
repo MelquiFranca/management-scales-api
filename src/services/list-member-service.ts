@@ -12,7 +12,8 @@ export default class ListMemberService {
       member.username,
       member.birthday,
       member.groupId,
-      member.photo
+      member.photo,
+      member.type,
     ))
   }
 } 
