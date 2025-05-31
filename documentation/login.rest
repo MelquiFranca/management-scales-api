@@ -10,8 +10,8 @@ Content-Type: application/json
     "endpoint": "sunda",
     "expirationTime": 3600,
     "keys": {
-      "p256dh": "te",
-      "auth": "te"
+      "p256dh": "subobo",
+      "auth": "sabobi"
     }
   }
 }
