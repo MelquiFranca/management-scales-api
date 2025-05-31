@@ -21,6 +21,6 @@ export default class MemberRepository implements IRepository {
     return this.database.list<DTOMember>(this.collectionName, filter)
   }
   async findByQuery<DTOMember>(filter: DTOLoginMember, options?: Object): Promise<DTOMember|null> {
-    return this.database.find<DTOMember|null>(this.collectionName, filter, options)
+    return this.database.find<DTOMember|null>(this.collectionName, filter, { projection: { password: 0 } })
   }
 }
