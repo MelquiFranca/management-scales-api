@@ -76,3 +76,9 @@ export type DTOUpdateSubscription = {
     auth: string
   }
 }
+export type DTONotification = {
+  groupId: string
+  eventId: string
+  messages?: DTOMessage[]
+  rosteredMembers?: DTORosteredMember[]
+}
