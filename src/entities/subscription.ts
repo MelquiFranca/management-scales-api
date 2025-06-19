@@ -4,7 +4,7 @@ export default class Subscription {
     readonly groupId: string,
     readonly endpoint: string,
     readonly expirationTime: Number,
-    readonly userId: string,
+    readonly memberId: string,
     readonly keys: {
       p256dh: string
       auth: string
