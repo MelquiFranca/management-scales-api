@@ -1,5 +1,5 @@
 import { DTOCreateMember, DTOFilter, DTORepositoryResult } from '@base/dtos'
-import { MongoClient, Db, Collection, ObjectId } from 'mongodb'
+import { MongoClient, Db, Collection, ObjectId, Document } from 'mongodb'
 import IDatabase from './idatabase'
 
 export default class Database implements IDatabase {
@@ -29,9 +29,9 @@ export default class Database implements IDatabase {
       id: result.insertedId?.toString()
     }
   }
-  async update(collectionName: string, filter: Object, updateData: Object): Promise<DTORepositoryResult> {
+  async update(collectionName: string, filter: Object, updateData: Object, upsert: boolean = false): Promise<DTORepositoryResult> {
     const collection = this.#getCollection(collectionName)
-    const result = await collection.updateOne(filter, updateData, { upsert: true })
+    const result = await collection.updateOne(filter, updateData, { upsert })
     if (!result.acknowledged) throw new Error('Failed to update member')
     return {
       id: result.upsertedId?.toString(),

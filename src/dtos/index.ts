@@ -4,7 +4,8 @@ export type DTOMember = {
   username: string
   type: string
   birthday: Date
-  groupId: string
+  groups: string[]
+  groupId?: string[]
   password?: string
   photo?: string
 }
@@ -59,10 +60,10 @@ export type DTOScale = {
   rosteredMembers: DTORosteredMember[]
 }
 export type DTOSubscription = {
-  groupId: string
+  groups: string[]
   endpoint: string
   expirationTime: Number
-  userId: string
+  memberId: string
   keys: {
     p256dh: string
     auth: string

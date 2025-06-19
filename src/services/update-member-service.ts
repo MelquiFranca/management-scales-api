@@ -3,7 +3,7 @@ import IRepository from '@base/repositories/repository'
 
 export default class UpdateMemberService {
   constructor (private readonly repository: IRepository) {}
-  async execute (data: DTOMember): Promise<DTORepositoryResult> {
-    return this.repository.update(data)
+  async execute (id: string, data: DTOMember): Promise<DTORepositoryResult> {
+    return this.repository.update(id, data)
   }
 }

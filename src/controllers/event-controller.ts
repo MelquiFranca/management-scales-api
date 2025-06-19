@@ -8,7 +8,7 @@ import RemoveEventService from '@base/services/remove-event-service'
 import { Request, Response } from 'express'
 
 interface CustomRequest extends Request {
-  token: DTOMember
+  token: DTOMember,
 }
 export default class EventController {
   #path = 'events'
@@ -31,7 +31,7 @@ export default class EventController {
     try {
       const { token } = (req as CustomRequest)
       const listEventService = new ListEventService(this.#repository)
-      const events = await listEventService.execute({ groupId: token.groupId.toString() })
+      const events = await listEventService.execute({ groupId: token.groupId?.toString() })
       res.json({ events })
     } catch (error) {
       console.error(error)
@@ -43,7 +43,7 @@ export default class EventController {
       const { body } = req
       const { token } = (req as CustomRequest)
       const removeEventService = new RemoveEventService(this.#repository)
-      const removed = await removeEventService.execute(body.id, { groupId: token.groupId })
+      const removed = await removeEventService.execute(body.id, { groupId: token.groupId?.toString() })
       res.json(removed)
     } catch (error) {
       console.error(error)

@@ -5,7 +5,10 @@ import IRepository from '@base/repositories/repository'
 export default class ListScaleService {
   constructor (private readonly repository: IRepository) {}
   async execute (filter?: DTOFilter): Promise<Scale[]> {
-    const scales = await this.repository.list<DTOScale>(filter)
+    const query = {
+      ...(filter?.groupId && { groupId: { $in: [filter.groupId] } })
+    }
+    const scales = await this.repository.list<DTOScale>(query)
     return scales.map(scale => new Scale(
       scale._id.toString(),
       scale.groupId,

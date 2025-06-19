@@ -31,8 +31,8 @@ export default class LoginController {
         const createSubscription = new CreateSubscriptionService(this.#repositorySubscription)
         createSubscription.execute({
           ...body.subscription,
-          userId: validatedPassword._id,
-          groupId: validatedPassword.groupId
+          memberId: validatedPassword._id,
+          groups: validatedPassword.groups
         })
       }
     } catch (error) {

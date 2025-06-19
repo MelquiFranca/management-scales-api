@@ -31,7 +31,7 @@ export default class ScaleController {
     try {
       const { token } = (req as CustomRequest)
       const listScaleService = new ListScaleService(this.#repository)
-      const scales = await listScaleService.execute({ groupId: token.groupId.toString() })
+      const scales = await listScaleService.execute({ groupId: token.groupId?.toString() })
       res.json({ scales })
     } catch (error) {
       res.status(400).json(error)
@@ -42,7 +42,7 @@ export default class ScaleController {
       const { body } = req
       const { token } = (req as CustomRequest)
       const removeScaleService = new RemoveScaleService(this.#repository)
-      const removed = await removeScaleService.execute(body.id, { groupId: token.groupId })
+      const removed = await removeScaleService.execute(body.id, { groupId: token.groupId?.toString() })
       res.json(removed)
     } catch (error) {
       res.status(400).json(error)

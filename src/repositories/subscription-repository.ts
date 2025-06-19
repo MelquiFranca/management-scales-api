@@ -14,11 +14,11 @@ export default class SubscriptionRepository implements IRepository {
   async remove(id: string, filter?: Object): Promise<DTORepositoryResult> {
     return this.database.remove(this.collectionName, id, filter)
   }
-  async update(data: Subscription): Promise<DTORepositoryResult> {
+  async update(id: string, data: Subscription): Promise<DTORepositoryResult> {
     return  this.database.update(
       this.collectionName,
       {
-        userId: data.userId,
+        memberId: data.memberId,
         groupId: data.groupId
       },
       {
