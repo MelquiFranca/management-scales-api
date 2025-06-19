@@ -14,8 +14,8 @@ export default class ScaleRepository implements IRepository {
   async remove(id: string, filter?: Object): Promise<DTORepositoryResult> {
     return this.database.remove(this.collectionName, id, filter)
   }
-  async update(data: Scale): Promise<DTORepositoryResult> {
-    return Promise.resolve({ id: data.id, updated: true })
+  async update(id: string, data: Scale): Promise<DTORepositoryResult> {
+    return Promise.resolve({ id, updated: true })
   }
   async list<DTOScale>(filter: DTOFilter): Promise<DTOScale[]> {
     return this.database.list<DTOScale>(this.collectionName, filter)
